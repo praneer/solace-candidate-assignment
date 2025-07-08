@@ -4,6 +4,16 @@ export interface Advocate {
     city: string;
     degree: string;
     specialties: string[];
-    yearsOfExperience: string;
-    phoneNumber: string;
+    yearsOfExperience: number;
+    phoneNumber: number;
+}
+
+export interface AdvocatesResponse {
+    data: Advocate[];
+    pagination: {
+        page: number;
+        pageSize: number;
+        total: number;
+        totalPages: number;
+    }
 }

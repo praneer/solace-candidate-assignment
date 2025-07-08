@@ -1,6 +1,7 @@
 import db from "../../../db";
 import { advocates } from "../../../db/schema";
 import { advocateData } from "../../../db/seed/advocates";
+import {AdvocatesResponse} from "@/app/api/advocates/models";
 
 export async function GET(request: Request) {
   // Uncomment this line to use a database
@@ -32,8 +33,7 @@ export async function GET(request: Request) {
   const paginatedData = filteredData.slice(offset, offset + pageSize);
 
   const totalPages = Math.ceil(filteredData.length / pageSize);
-
-  return Response.json({
+  const response: AdvocatesResponse = {
     data: paginatedData,
     pagination: {
       page,
@@ -41,5 +41,7 @@ export async function GET(request: Request) {
       total: filteredData.length,
       totalPages
     }
-  });
+  }
+
+  return Response.json(response);
 }
